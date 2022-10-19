@@ -10,20 +10,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ClubController extends AbstractController
 {
-    /**
-     * @Route("/club", name="app_club")
-     */
-
+    #[Route('/club', name: 'app_club')]
     public function index(): Response
     {
         return $this->render('club/index.html.twig', [
             'controller_name' => 'ClubController',
         ]);
     }
-    /**
-     * @Route("/formations", name="app_formation")
-     */
 
+    #[Route('/formations', name: 'app_formation')]
 
     public function formations()
     {
@@ -49,19 +44,16 @@ class ClubController extends AbstractController
         );
         return $this->render("club/list.html.twig", array("c1" => $var1, "c2" => $var2, 'tab_formations' => $formations));
     }
-    /**
-     * @Route("/reservation", name="app_reservation")
-     */
 
+    #[Route('/reservation', name: 'app_reservation')]
 
     public function reservation(Request $request)
     {
         $value = $request->query->get('value');
         return $this->render('club/details.html.twig', ['value' => $value]);;
     }
-    /**
-     * @Route("/clubs", name="app_club")
-     */
+
+    #[Route('/clubs', name: 'app_club')]
 
 
     public function ListClub(ClubRepository $repository)

@@ -3,34 +3,25 @@
 namespace App\Entity;
 
 use App\Repository\ClubRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ClubRepository::class)
- */
+#[ORM\Entity(repositoryClass: ClubRepository::class)]
 class Club
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id = null;
 
-    /**
-     * @ORM\Column(type="string", length=20)
-     */
-    private $name;
+    #[ORM\Column(length: 20)]
+    private ?string $name = null;
 
-    /**
-     * @ORM\Column(type="text")
-     */
-    private $description;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $adress;
+    #[ORM\Column(length: 100)]
+    private ?string $adress = null;
 
     public function getId(): ?int
     {
