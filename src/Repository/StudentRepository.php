@@ -39,28 +39,41 @@ class StudentRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Student[] Returns an array of Student objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    //    /**
+    //     * @return Student[] Returns an array of Student objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('s.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
 
-//    public function findOneBySomeField($value): ?Student
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    //    public function findOneBySomeField($value): ?Student
+    //    {
+    //        return $this->createQueryBuilder('s')
+    //            ->andWhere('s.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
+    public function sortByMoyenne()
+    {
+        $qb = $this->createQueryBuilder('x')->orderBy('x.moyenne', 'Asc');
+        return $qb->getQuery()->getResult();
+    }
+    public function searchStudent($ref)
+    {
+        $qb =  $this->createQueryBuilder('s')
+            ->where('s.ref LIKE :x')
+            ->setParameter('x', $ref);
+        return $qb->getQuery()
+            ->getResult();
+    }
 }
